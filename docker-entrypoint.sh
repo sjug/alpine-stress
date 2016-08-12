@@ -11,7 +11,7 @@ case "${RUN}" in
     ;;
   jmeter)
     IFS=$'\n' 
-    NUM="$(echo $TARGET_IP | sed 's/\//\n/g' | wc -l)"
+    NUM="$(echo $TARGET_IP | sed 's/\:/\n/g' | wc -l)"
     TARGET=($(echo $TARGET_IP | sed 's/\//\n/g'))
     [[ "${ROUTER_IP}" ]] && echo "${ROUTER_IP} ${TARGET_IP}" >> /etc/hosts
     exec jmeter -n -t test.jmx -Jnum=${NUM} -Jipaddr1=${TARGET[0]} -Jipaddr2=${TARGET[1]} \
